@@ -1,0 +1,27 @@
+{
+   "name": "onemightyroar/php-paulus-components",
+   "description": "Components to enhance Paulus projects to enable quicker, more structured REST API's",
+   "type": "library",
+   "keywords": ["paulus", "rest", "api", "bootstrap"],
+   "homepage": "http://onemightyroar.com/",
+   "license": "MIT",
+   "authors": [
+      {
+         "name": "Trevor N. Suarez",
+         "email": "trevor@onemightyroar.com",
+         "homepage": "http://about.me/tnsuarez"
+      },
+      {
+         "name": "Brian C. Muse",
+         "email": "brian@onemightyroar.com",
+         "homepage": "http://brianmuse.com/"
+      }
+   ],
+   "require": {
+      "php": ">=5.4.0",
+      "paulus/paulus": "0.9.4"
+   },
+   "autoload": {
+      "psr-0": { "OneMightyRoar\\PHP_Paulus_Components\\": "src/" }
+   }
+}
