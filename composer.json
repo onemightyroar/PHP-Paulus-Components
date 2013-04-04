@@ -23,5 +23,6 @@
    },
    "autoload": {
       "psr-0": { "OneMightyRoar\\PHP_Paulus_Components\\": "src/" }
-   }
+   },
+   "target-dir": "src/OneMightyRoar/PHP_Paulus_Components"
 }
