@@ -47,17 +47,17 @@ class App extends Paulus {
 	 * {@inheritdoc}
 	 *
 	 * @see \Paulus\Paulus::__construct()
-	 * @param string $app_namespace     The name of the application's namespace, to be used in the autoloader
 	 * @param string $base_path         The bash path to load and define constants from
+	 * @param string $app_namespace     The name of the application's namespace, to be used in the autoloader
 	 * @param array $config             A configuration array that matches Paulus' config pattern
 	 * @access public
 	 */
-	public function __construct( $app_namespace = null, $base_path = __DIR__, array $config = null ) {
-		// Quickly define some constants
-		$this->define_global_constants();
-
+	public function __construct( $base_path = __DIR__, $app_namespace = null, array $config = null ) {
 		// Fall back to a default config path
 		$this->app_base_path = $base_path;
+
+		// Quickly define some constants
+		$this->define_global_constants();
 
 		// Load our config if we didn't pass one
 		$config = $config ?: ( new FileArrayLoader( $this->app_base_path . '/../configs/', null, 'load_config' ) )->load();
