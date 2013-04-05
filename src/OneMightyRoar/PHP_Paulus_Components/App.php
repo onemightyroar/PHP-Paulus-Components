@@ -32,6 +32,14 @@ class App extends Paulus {
 	 */
 	protected $app_namespace;
 
+	/**
+	 * The base path of the application
+	 *
+	 * @var string
+	 * @access protected
+	 */
+	protected $app_base_path;
+
 
 	/**
 	 * Constructor
@@ -40,15 +48,19 @@ class App extends Paulus {
 	 *
 	 * @see \Paulus\Paulus::__construct()
 	 * @param string $app_namespace     The name of the application's namespace, to be used in the autoloader
+	 * @param string $base_path         The bash path to load and define constants from
 	 * @param array $config             A configuration array that matches Paulus' config pattern
 	 * @access public
 	 */
-	public function __construct( $app_namespace = null, array $config = null ) {
+	public function __construct( $app_namespace = null, $base_path = __DIR__, array $config = null ) {
 		// Quickly define some constants
 		$this->define_global_constants();
 
+		// Fall back to a default config path
+		$this->app_base_path = $base_path;
+
 		// Load our config if we didn't pass one
-		$config = $config ?: ( new FileArrayLoader( __DIR__ . '/../configs/', null, 'load_config' ) )->load();
+		$config = $config ?: ( new FileArrayLoader( $this->app_base_path . '/../configs/', null, 'load_config' ) )->load();
 
 		if ( !is_null( $app_namespace ) ) {
 			$this->app_namespace = $app_namespace;
@@ -69,10 +81,10 @@ class App extends Paulus {
 	 */
 	private function define_global_constants() {
 		if ( !defined( 'PAULUS_APP_DIR' ) ) {
-			define( 'PAULUS_APP_DIR',  __DIR__ . DIRECTORY_SEPARATOR );
+			define( 'PAULUS_APP_DIR',  $this->app_base_path . DIRECTORY_SEPARATOR );
 		}
 		if ( !defined( 'PAULUS_EXTERNAL_LIB_DIR' ) ) {
-			define( 'PAULUS_EXTERNAL_LIB_DIR', __DIR__ . '/../vendor' );
+			define( 'PAULUS_EXTERNAL_LIB_DIR', $this->app_base_path . '/../vendor' );
 		}
 	}
 
@@ -94,7 +106,7 @@ class App extends Paulus {
 			}
 
 			// Define our file path
-			$file_path = __DIR__ . '/../' . $classname . '.php';
+			$file_path = $this->app_base_path . '/../' . $classname . '.php';
 
 			// If the file is readable
 			if ( is_readable($file_path) ) {
