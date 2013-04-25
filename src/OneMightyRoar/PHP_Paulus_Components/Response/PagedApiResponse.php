@@ -164,17 +164,4 @@ class PagedApiResponse extends ApiResponse {
 		return $this;
 	}
 
-	/**
-	 * Override the set_data method to force array data
-	 *
-	 * @overrides ApiResponse::set_data
-	 * @param array $data
-	 * @access public
-	 * @return PagedApiResponse
-	 */
-	public function set_data( array $data ) {
-		$this->data = $data;
-		return $this;
-	}
-
 } // End class PagedApiResponse

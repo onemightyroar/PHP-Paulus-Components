@@ -129,7 +129,10 @@ class ApiResponse {
 	 * @return ApiResponse
 	 */
 	public function set_data( $data ) {
-		// TODO: Cast this with some sort of "is_hash" check
+		if (static::is_hash( $data )) {
+			$data = (object) $data;
+		}
+
 		$this->data = $data;
 		return $this;
 	}
@@ -172,6 +175,18 @@ class ApiResponse {
 	public function set_more_info( $more_info ) {
 		$this->more_info = (object) $more_info;
 		return $this;
+	}
+
+	/**
+	 * Easy method to determine if the array contains any non-integer keys
+	 *
+	 * @param array $array
+	 * @static
+	 * @access public
+	 * @return boolean
+	 */
+	public static function is_hash( array $array ) {
+		return (bool)count(array_filter(array_keys($array), 'is_string'));
 	}
 
 } // End class ApiResponse
