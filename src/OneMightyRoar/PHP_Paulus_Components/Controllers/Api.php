@@ -10,9 +10,7 @@
 
 namespace OneMightyRoar\PHP_Paulus_Components\Controllers;
 
-use \stdClass;
-
-use	\Paulus\BaseController;
+use \Paulus\BaseController;
 use \Paulus\Exceptions\ObjectNotFound;
 
 use \OneMightyRoar\PHP_Paulus_Components\Response\ApiResponse;
@@ -22,6 +20,7 @@ use \OneMightyRoar\PHP_Paulus_Components\Exceptions\HTTPBasicUnauthorized;
 use \OneMightyRoar\PHP_Paulus_Components\Exceptions\BadCredentials;
 use \OneMightyRoar\PHP_Paulus_Components\Exceptions\AuthenticationRequired;
 
+use \OneMightyRoar\PHP_ActiveRecord_Components\ModelInterface;
 use \OneMightyRoar\PHP_ActiveRecord_Components\Exceptions\ActiveRecordValidationException;
 
 use \Predis\Connection\ConnectionException as RedisConnectionException;
@@ -45,6 +44,12 @@ class Api extends BaseController {
 	 * @access private
 	 */
 	private $php_auth;
+
+	/**
+	 * @var mixed
+	 * @access public
+	 */
+	public $show_paging_resources = true;
 
 
 	/**
@@ -176,6 +181,26 @@ class Api extends BaseController {
 	}
 
 	/**
+	 * Prepare any raw model data as a controller response
+	 *
+	 * @param array|ModelInterface $data
+	 * @access public
+	 * @return object|array The normalized data
+	 */
+	public function prepare_model_data($data)
+	{
+		if (is_array($data)) {
+			foreach ($data as &$entry) {
+				$entry = $this->prepare_model_data($entry);
+			}
+		} elseif ($data instanceof ModelInterface) {
+			$data = $data->getProfile();
+		}
+
+		return $data;
+	}
+
+	/**
 	 * route_respond
 	 *
 	 * Route responder for filtering routes directed through a controller.
@@ -202,6 +227,41 @@ class Api extends BaseController {
 				if ( $result_data instanceof PagedApiResponse ) {
 					// Add the paging data to our response data
 					$this->response->paging = $result_data->get_formatted_paging_data();
+
+					// Build a resources object for paging links/refs
+					if ($this->show_paging_resources) {
+						$this->response->paging->resources = (object) array();
+
+						if ($result_data->get_has_next_page()) {
+							// Merge our next page number into our query vars
+							$query_vars = array_merge(
+								$_GET,
+								array(
+									'page' => ($this->response->paging->page + 1)
+								)
+							);
+
+							$this->response->paging->resources->next = $this->app->parse(
+								'{APP_URL}{ENDPOINT}?'
+								. http_build_query($query_vars)
+							);
+						}
+
+						if ($this->response->paging->page > 1) {
+							// Merge our next page number into our query vars
+							$query_vars = array_merge(
+								$_GET,
+								array(
+									'page' => ($this->response->paging->page - 1)
+								)
+							);
+
+							$this->response->paging->resources->previous = $this->app->parse(
+								'{APP_URL}{ENDPOINT}?'
+								. http_build_query($query_vars)
+							);
+						}
+					}
 				}
 			}
 			// True response
