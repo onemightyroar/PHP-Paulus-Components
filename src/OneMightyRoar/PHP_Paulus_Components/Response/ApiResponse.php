@@ -129,7 +129,7 @@ class ApiResponse {
 	 * @return ApiResponse
 	 */
 	public function set_data( $data ) {
-		if (static::is_hash( $data )) {
+		if (is_array( $data ) && static::is_hash( $data )) {
 			$data = (object) $data;
 		}
 
