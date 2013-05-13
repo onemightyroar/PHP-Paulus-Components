@@ -19,7 +19,7 @@
    ],
    "require": {
       "php": ">=5.4.0",
-      "paulus/paulus": "0.9.4"
+      "paulus/paulus": "0.9.x"
    },
    "suggest": {
       "onemightyroar/php-activerecord-components": "~1.0    For easy integration with a php-activerecord project"
