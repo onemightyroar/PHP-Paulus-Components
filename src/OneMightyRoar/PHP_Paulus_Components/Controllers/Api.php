@@ -223,6 +223,10 @@ class Api extends BaseController {
 				$this->response->more_info = $result_data->get_more_info();
 				$this->response->data = $result_data->get_data();
 
+				foreach( $result_data->get_headers() as $name => $value ) {
+					$this->response->header( $name, $value );
+				}
+
 				// Ooo, we're a paged response?!
 				if ( $result_data instanceof PagedApiResponse ) {
 					// Add the paging data to our response data

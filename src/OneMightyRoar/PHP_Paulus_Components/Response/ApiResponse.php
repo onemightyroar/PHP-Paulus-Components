@@ -58,6 +58,14 @@ class ApiResponse {
 	 */
 	protected $more_info;
 
+	/**
+	 * An array containing all headers for the response
+	 *
+	 * @var array $headers
+	 * @access protected
+	 */
+	protected $headers = [];
+
 
 	/**
 	 * Constructor
@@ -66,11 +74,12 @@ class ApiResponse {
 	 * @param int $code 
 	 * @param string $status 
 	 * @param string $message 
-	 * @param object $more_info 
+	 * @param object $more_info
+	 * @param array $headers
 	 * @access public
 	 * @return void
 	 */
-	public function __construct( $data = null, $code = null, $status = null, $message = null, $more_info = null ) {
+	public function __construct( $data = null, $code = null, $status = null, $message = null, $more_info = null, $headers = null ) {
 		/**
 		 * Set our object's properties based on our passed in data
 		 * Use our setter methods, so we can overwrite how this works,
@@ -81,6 +90,7 @@ class ApiResponse {
 		!is_null( $status ) && $this->set_status( $status );
 		!is_null( $message ) && $this->set_message( $message );
 		!is_null( $more_info ) && $this->set_more_info( $more_info );
+		!is_null( $headers ) && $this->set_headers( $headers );
 	}
 
 	/**
@@ -175,6 +185,32 @@ class ApiResponse {
 	public function set_more_info( $more_info ) {
 		$this->more_info = (object) $more_info;
 		return $this;
+	}
+
+	/**
+	 * Add a header to the response
+	 * @param $name
+	 * @param $value
+	 */
+	public function set_header( $name, $value ) {
+		$this->headers[$name] = $value;
+	}
+
+	/**
+	 * Add a header to the response
+	 * @param $name
+	 * @param $value
+	 */
+	public function set_headers( $headers ) {
+		$this->headers = $headers;
+	}
+
+	/**
+	 * Get the headers
+	 * @return array
+	 */
+	public function get_headers() {
+		return $this->headers;
 	}
 
 	/**
