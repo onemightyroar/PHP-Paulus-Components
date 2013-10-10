@@ -19,7 +19,13 @@
    ],
    "require": {
       "php": ">=5.4.0",
-      "paulus/paulus": "0.9.x"
+      "klein/klein": "dev-master",
+      "paulus/paulus": "dev-release/2.0.0"
+   },
+   "require-dev": {
+      "phpunit/phpunit": "3.7.x",
+      "phpunit/php-code-coverage": "1.2.x",
+      "squizlabs/php_codesniffer": "1.4.6"
    },
    "suggest": {
       "onemightyroar/php-activerecord-components": "~1.0    For easy integration with a php-activerecord project"
