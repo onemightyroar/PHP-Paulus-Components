@@ -8,17 +8,22 @@
  * @link        http://onemightyroar.com
  */
 
-namespace OneMightyRoar\PHP_Paulus_Components\Exceptions;
+namespace OneMightyRoar\PHP_Paulus_Components\Exception;
 
 /**
- * NotImplementedException 
+ * NotImplementedException
  *
- * @uses OneMightyRoar\PHP_Paulus_Components\Exceptions\UnsupportedMethodException
- * @package OneMightyRoar\PHP_Paulus_Components\Exceptions
+ * @uses OneMightyRoar\PHP_Paulus_Components\Exception\UnsupportedMethodException
+ * @package OneMightyRoar\PHP_Paulus_Components\Exception
  */
-class NotImplementedException extends UnsupportedMethodException {
+class NotImplementedException extends UnsupportedMethodException
+{
 
-	// Default properties
-	protected $message = 'Method or function is not (yet) implemented';
-
-} // End class NotImplementedException
+    /**
+     * The exception message
+     *
+     * @var string
+     * @access protected
+     */
+    protected $message = 'Method or function is not (yet) implemented';
+}

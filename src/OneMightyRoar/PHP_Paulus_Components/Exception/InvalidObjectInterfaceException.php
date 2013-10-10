@@ -8,14 +8,17 @@
  * @link        http://onemightyroar.com
  */
 
-namespace OneMightyRoar\PHP_Paulus_Components\Exceptions;
+namespace OneMightyRoar\PHP_Paulus_Components\Exception;
+
+use Exception;
 
 /**
  * InvalidObjectInterfaceException
  *
  * Exception throw when an object should implement a particular interface, but it does not
  *
- * @package OneMightyRoar\PHP_Paulus_Components\Exceptions
+ * @package OneMightyRoar\PHP_Paulus_Components\Exception
  */
-class InvalidObjectInterfaceException extends \Exception {
+class InvalidObjectInterfaceException extends Exception
+{
 }

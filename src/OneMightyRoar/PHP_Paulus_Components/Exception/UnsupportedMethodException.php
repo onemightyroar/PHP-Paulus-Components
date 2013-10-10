@@ -8,20 +8,32 @@
  * @link        http://onemightyroar.com
  */
 
-namespace OneMightyRoar\PHP_Paulus_Components\Exceptions;
+namespace OneMightyRoar\PHP_Paulus_Components\Exception;
 
-use \LogicException;
+use LogicException;
 
 /**
  * UnsupportedMethodException 
  *
- * @uses \LogicException
- * @package OneMightyRoar\PHP_Paulus_Components\Exceptions
+ * @uses LogicException
+ * @package OneMightyRoar\PHP_Paulus_Components\Exception
  */
-class UnsupportedMethodException extends LogicException {
+class UnsupportedMethodException extends LogicException
+{
 
-	// Default properties
-	protected $code = 500;
-	protected $message = 'Unsupported method call';
+    /**
+     * The exception and response code
+     *
+     * @var int
+     * @access protected
+     */
+    protected $code = 500;
 
-} // End class UnsupportedMethodException
+    /**
+     * The exception message
+     *
+     * @var string
+     * @access protected
+     */
+    protected $message = 'Unsupported method call';
+}

@@ -8,23 +8,26 @@
  * @link        http://onemightyroar.com
  */
 
-namespace OneMightyRoar\PHP_Paulus_Components\Exceptions;
+namespace OneMightyRoar\PHP_Paulus_Components\Exception\Http;
 
-use \Paulus\Exceptions\Unauthorized;
-use \Paulus\Exceptions\Interfaces\ApiException;
+use Paulus\Exception\Http\Standard\Unauthorized;
 
 /**
  * HTTPBasicUnauthorized 
  *
  * HTTP Basic authentication required
  *
- * @uses \Paulus\Exceptions\Unauthorized
- * @uses \Paulus\Exceptions\Interfaces\ApiException
- * @package OneMightyRoar\PHP_Paulus_Components\Exceptions
+ * @uses Paulus\Exception\Http\Standard\Unauthorized
+ * @package OneMightyRoar\PHP_Paulus_Components\Exception\Http
  */
-class HTTPBasicUnauthorized extends Unauthorized implements ApiException {
+class HTTPBasicUnauthorized extends Unauthorized
+{
 
-	// Define default
-	protected $message = '';
-
-} // End class HTTPBasicUnauthorized
+    /**
+     * The exception message
+     *
+     * @var string
+     * @access protected
+     */
+    protected $message = '';
+}

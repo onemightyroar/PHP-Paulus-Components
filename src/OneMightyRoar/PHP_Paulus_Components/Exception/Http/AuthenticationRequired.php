@@ -8,21 +8,24 @@
  * @link        http://onemightyroar.com
  */
 
-namespace OneMightyRoar\PHP_Paulus_Components\Exceptions;
+namespace OneMightyRoar\PHP_Paulus_Components\Exception\Http;
 
-use \Paulus\Exceptions\Unauthorized;
-use \Paulus\Exceptions\Interfaces\ApiException;
+use Paulus\Exception\Http\Standard\Unauthorized;
 
 /**
  * AuthenticationRequired
  *
- * @uses \Paulus\Exceptions\Unauthorized
- * @uses \Paulus\Exceptions\Interfaces\ApiException
- * @package OneMightyRoar\PHP_Paulus_Components\Exceptions
+ * @uses Paulus\Exception\Http\Standard\Unauthorized
+ * @package OneMightyRoar\PHP_Paulus_Components\Exception\Http
  */
-class AuthenticationRequired extends Unauthorized implements ApiException {
+class AuthenticationRequired extends Unauthorized
+{
 
-	// Define default
-	protected $message = 'A required access token was not sent';
-
-} // End class AuthenticationRequired
+    /**
+     * The exception message
+     *
+     * @var string
+     * @access protected
+     */
+    protected $message = 'A required access token was not sent';
+}

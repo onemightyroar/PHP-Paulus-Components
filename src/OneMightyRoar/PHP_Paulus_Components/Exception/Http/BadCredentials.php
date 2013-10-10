@@ -8,23 +8,26 @@
  * @link        http://onemightyroar.com
  */
 
-namespace OneMightyRoar\PHP_Paulus_Components\Exceptions;
+namespace OneMightyRoar\PHP_Paulus_Components\Exception\Http;
 
-use \Paulus\Exceptions\Unauthorized;
-use \Paulus\Exceptions\Interfaces\ApiException;
+use Paulus\Exception\Http\Standard\Unauthorized;
 
 /**
  * BadCredentials 
  *
  * Authentication failure
  *
- * @uses \Paulus\Exceptions\Unauthorized
- * @uses \Paulus\Exceptions\Interfaces\ApiException
- * @package OneMightyRoar\PHP_Paulus_Components\Exceptions
+ * @uses Paulus\Exception\Http\Standard\Unauthorized
+ * @package OneMightyRoar\PHP_Paulus_Components\Exception\Http
  */
-class BadCredentials extends Unauthorized implements ApiException {
+class BadCredentials extends Unauthorized
+{
 
-	// Define default
-	protected $message = 'Please check your credentials and try again';
-
-} // End class BadCredentials
+    /**
+     * The exception message
+     *
+     * @var string
+     * @access protected
+     */
+    protected $message = 'Please check your credentials and try again';
+}
