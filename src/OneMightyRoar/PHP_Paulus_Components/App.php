@@ -99,7 +99,9 @@ class App extends Paulus
 
         // Set our default response
         if ($is_api && null === $this->default_response) {
-            $this->setDefaultResponse(new ApiResponse());
+            $this->setDefaultResponse(
+                (new ApiResponse())->unlock()
+            );
         }
     }
 
