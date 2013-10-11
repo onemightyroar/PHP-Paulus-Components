@@ -13,7 +13,7 @@ namespace OneMightyRoar\PHP_Paulus_Components\Exception;
 use LogicException;
 
 /**
- * UnsupportedMethodException 
+ * UnsupportedMethodException
  *
  * @uses LogicException
  * @package OneMightyRoar\PHP_Paulus_Components\Exception
