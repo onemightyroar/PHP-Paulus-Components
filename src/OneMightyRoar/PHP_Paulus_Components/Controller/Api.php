@@ -129,7 +129,7 @@ class Api extends AbstractController
     public function requireHttpBasicAuth()
     {
         // If authentication data was sent
-        if (is_null($this->get_php_auth()->username) || is_null($this->get_php_auth()->password)) {
+        if (is_null($this->getPhpAuth()->username) || is_null($this->getPhpAuth()->password)) {
             throw new HTTPBasicUnauthorized();
         }
 
@@ -247,7 +247,7 @@ class Api extends AbstractController
 
         } elseif ($exception instanceof HTTPBasicUnauthorized) {
             // Grab our "realm"
-            $realm = $this->config['app-meta']['app_url'];
+            $realm = $this->app()->config()['app-meta']['app_url'];
 
             // Tell the device/consumer that they must pass auth data
             $this->response->header('WWW-Authenticate', 'Basic realm="' . $realm . '"');
