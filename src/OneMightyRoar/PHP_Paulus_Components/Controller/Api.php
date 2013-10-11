@@ -10,6 +10,8 @@
 
 namespace OneMightyRoar\PHP_Paulus_Components\Controller;
 
+use ActiveRecord\DatabaseException;
+use ActiveRecord\RecordNotFound;
 use Exception;
 use Klein\AbstractResponse;
 use Klein\Request;
@@ -18,6 +20,7 @@ use OneMightyRoar\PHP_ActiveRecord_Components\Exceptions\ActiveRecordValidationE
 use OneMightyRoar\PHP_ActiveRecord_Components\ModelInterface;
 use OneMightyRoar\PHP_Paulus_Components\Exception\Http\AuthenticationRequired;
 use OneMightyRoar\PHP_Paulus_Components\Exception\Http\BadCredentials;
+use OneMightyRoar\PHP_Paulus_Components\Exception\Http\DatabaseConnectionException;
 use OneMightyRoar\PHP_Paulus_Components\Exception\Http\HTTPBasicUnauthorized;
 use Paulus\Controller\AbstractController;
 use Paulus\Exception\Http\InvalidParameters;
@@ -238,11 +241,19 @@ class Api extends AbstractController
         } elseif ($exception instanceof RedisConnectionException) {
             // Let's handle the exception gracefully
             parent::handleException(
-                new BadGateway(
-                    $e->getMessage(),
-                    $e->getCode(),
-                    $e
-                )
+                new DatabaseConnectionException()
+            );
+
+        } elseif ($exception instanceof DatabaseException) {
+            // Let's handle the exception gracefully
+            parent::handleException(
+                new DatabaseConnectionException()
+            );
+
+        } elseif ($exception instanceof RecordNotFound) {
+            // Let's handle the exception gracefully
+            parent::handleException(
+                new ObjectNotFound()
             );
 
         } elseif ($exception instanceof HTTPBasicUnauthorized) {
