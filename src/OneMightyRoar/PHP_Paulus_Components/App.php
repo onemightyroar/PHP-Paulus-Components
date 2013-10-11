@@ -88,7 +88,9 @@ class App extends Paulus
         $this->app_namespace = $app_namespace;
 
         // Set the router's controller namespace
-        $this->router->setControllerNamespace($app_namespace .'\Controller');
+        if (null !== $app_namespace) {
+            $this->router->setControllerNamespace($app_namespace .'\Controller');
+        }
 
         // Setup our config
         $config_path = $this->app_base_path . '/../configs/';
