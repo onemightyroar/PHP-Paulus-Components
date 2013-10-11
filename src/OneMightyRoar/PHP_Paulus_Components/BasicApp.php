@@ -12,13 +12,16 @@ namespace OneMightyRoar\PHP_Paulus_Components;
 
 use OneMightyRoar\PHP_Paulus_Components\DataCollection\ImmutableDataCollection;
 use OneMightyRoar\PHP_Paulus_Components\FileLoader\FileArrayLoader;
-use Paulus\FileLoader\RouteLoaderFactory;
 use Paulus\FileLoader\RouteLoader;
+use Paulus\FileLoader\RouteLoaderFactory;
 use Paulus\Paulus;
 use Paulus\Response\ApiResponse;
+use Paulus\Router;
+use Paulus\ServiceLocator;
+use Psr\Log\LoggerInterface;
 
 /**
- * App
+ * BasicApp
  *
  * Base application class that loads and
  * initializes our Paulus application
@@ -26,7 +29,7 @@ use Paulus\Response\ApiResponse;
  * @uses Paulus\Paulus
  * @package OneMightyRoar\PHP_Paulus_Components
  */
-class App extends Paulus
+class BasicApp extends Paulus
 {
 
     /**
@@ -76,12 +79,21 @@ class App extends Paulus
      * @param string $base_path         The bash path to load and define constants from
      * @param string $app_namespace     The name of the application's namespace, to be used in the autoloader
      * @param array $config             A configuration array that matches Paulus' config pattern
+     * @param Router $router            The Router instance to use for HTTP routing
+     * @param ServiceLocator $locator   The service locator/container for the app
+     * @param LoggerInterface $logger   A PSR LoggerInterface compatible logger instance
      * @access public
      */
-    public function __construct($base_path = __DIR__, $app_namespace = null, array $config = null, $is_api = true)
-    {
+    public function __construct(
+        $base_path = __DIR__,
+        $app_namespace = null,
+        array $config = null,
+        Router $router = null,
+        ServiceLocator $locator = null,
+        LoggerInterface $logger = null
+    ) {
         // Call our parent constructor
-        parent::__construct();
+        parent::__construct($router, $locator, $logger);
 
         // Property assignments
         $this->app_base_path = $base_path;
@@ -124,7 +136,7 @@ class App extends Paulus
      * @param boolean $auto_load_routes
      * @param RouteLoader $route_loader
      * @access public
-     * @return App
+     * @return BasicApp
      */
     public function prepare($auto_load_routes = null, RouteLoader $route_loader = null)
     {
