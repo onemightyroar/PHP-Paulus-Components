@@ -110,13 +110,6 @@ class BasicApp extends Paulus
 
         // Enter our config into the locator AFTER its been initialized
         $this->locator[static::CONFIG_KEY] = new ImmutableDataCollection($config);
-
-        // Set our default response
-        if ($is_api && null === $this->default_response) {
-            $this->setDefaultResponse(
-                (new ApiResponse())->unlock()
-            );
-        }
     }
 
     /**
