@@ -171,11 +171,8 @@ class Api extends AbstractController
     {
         // Ooo, we're a paged response?!
         if ($result_data instanceof PagedApiResponse) {
-            // Add the paging data to our response data
-            $this->response->paging = $result_data->get_formatted_paging_data();
-
             // Build a resources object for paging links/refs
-            if ($this->show_paging_resources) {
+            if ($this->show_paging_resources && false) { // TODO: Fix this flow based on request variables...
                 $this->response->paging->resources = (object) array();
 
                 if ($result_data->get_has_next_page()) {
