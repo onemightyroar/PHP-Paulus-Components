@@ -227,8 +227,8 @@ class Api extends AbstractController
             // Grab our validation errors from our exception
             $error_data = $exception->get_errors(true);
 
-            $verbose_exception = new InvalidApiParameters($exception->getMessage(), null, $exception);
-            $verbose_exception->set_more_info($error_data);
+            $verbose_exception = new InvalidParameters();
+            $verbose_exception->setMoreInfo($error_data);
 
             // Handle the rest with our parent. :)
             parent::handleException(
