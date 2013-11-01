@@ -92,19 +92,21 @@ class Api extends AbstractController
      *
      * Give special, clean access to PHP's authentication credentials
      * so we don't have to always access the $_SERVER array
-     * 
+     *
      * @final
      * @access private
-     * @return void
+     * @return object
      */
     final private function initPhpAuth()
     {
-        return $this->php_auth = (object) array(
-            'username'  => isset($_SERVER['PHP_AUTH_USER'])   ? $_SERVER['PHP_AUTH_USER'] : null,
-            'password'  => isset($_SERVER['PHP_AUTH_PW'])     ? $_SERVER['PHP_AUTH_PW'] : null,
-            'type'      => isset($_SERVER['AUTH_TYPE'])       ? $_SERVER['AUTH_TYPE'] : null,
-            'digest'    => isset($_SERVER['PHP_AUTH_DIGEST']) ? $_SERVER['PHP_AUTH_DIGEST'] : null,
-        );
+        $server = $this->request->server();
+
+        return $this->php_auth = (object) [
+            'username'  => $server->get('PHP_AUTH_USER'),
+            'password'  => $server->get('PHP_AUTH_PW'),
+            'type'      => $server->get('AUTH_TYPE'),
+            'digest'    => $server->get('PHP_AUTH_DIGEST'),
+        ];
     }
 
     /**
