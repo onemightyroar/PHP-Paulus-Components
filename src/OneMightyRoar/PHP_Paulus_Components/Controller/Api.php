@@ -22,6 +22,7 @@ use OneMightyRoar\PHP_Paulus_Components\Exception\Http\AuthenticationRequired;
 use OneMightyRoar\PHP_Paulus_Components\Exception\Http\BadCredentials;
 use OneMightyRoar\PHP_Paulus_Components\Exception\Http\DatabaseConnectionException;
 use OneMightyRoar\PHP_Paulus_Components\Exception\Http\HTTPBasicUnauthorized;
+use OneMightyRoar\PHP_Paulus_Components\Exception\InvalidDataModelException;
 use Paulus\Controller\AbstractController;
 use Paulus\Exception\Http\InvalidParameters;
 use Paulus\Exception\Http\ObjectNotFound;
@@ -228,6 +229,18 @@ class Api extends AbstractController
         if ($exception instanceof ActiveRecordValidationException) {
             // Grab our validation errors from our exception
             $error_data = $exception->get_errors(true);
+
+            $verbose_exception = new InvalidParameters();
+            $verbose_exception->setMoreInfo($error_data);
+
+            // Handle the rest with our parent. :)
+            parent::handleException(
+                $verbose_exception
+            );
+
+        } elseif ($exception instanceof InvalidDataModelException) {
+            // Grab our validation errors from our exception
+            $error_data = $exception->getErrors();
 
             $verbose_exception = new InvalidParameters();
             $verbose_exception->setMoreInfo($error_data);
