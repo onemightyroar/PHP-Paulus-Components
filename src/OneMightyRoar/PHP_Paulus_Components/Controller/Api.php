@@ -168,7 +168,7 @@ class Api extends AbstractController
      *
      * @param mixed $result_data
      * @access public
-     * @return mixed
+     * @return ControllerInterface
      */
     public function handleResult($result_data)
     {
@@ -219,9 +219,9 @@ class Api extends AbstractController
      * Handle an exception thrown during the callback
      * execution of the current controller
      *
-     * @param Exception $e  The actual exception object itself
+     * @param Exception $exception  The actual exception object itself
      * @access public
-     * @return mixed
+     * @return ControllerInterface
      */
     public function handleException(Exception $exception)
     {
