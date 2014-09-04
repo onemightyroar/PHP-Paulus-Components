@@ -230,7 +230,7 @@ class Api extends AbstractController
             // Grab our validation errors from our exception
             $error_data = $exception->get_errors(true);
 
-            $verbose_exception = new InvalidParameters();
+            $verbose_exception = InvalidParameters::create(null, null, $exception);
             $verbose_exception->setMoreInfo($error_data);
 
             // Handle the rest with our parent. :)
@@ -242,7 +242,7 @@ class Api extends AbstractController
             // Grab our validation errors from our exception
             $error_data = $exception->getErrors();
 
-            $verbose_exception = new InvalidParameters();
+            $verbose_exception = InvalidParameters::create(null, null, $exception);
             $verbose_exception->setMoreInfo($error_data);
 
             // Handle the rest with our parent. :)
@@ -253,19 +253,19 @@ class Api extends AbstractController
         } elseif ($exception instanceof RedisConnectionException) {
             // Let's handle the exception gracefully
             parent::handleException(
-                new DatabaseConnectionException()
+                DatabaseConnectionException::create(null, null, $exception)
             );
 
         } elseif ($exception instanceof DatabaseException) {
             // Let's handle the exception gracefully
             parent::handleException(
-                new DatabaseConnectionException()
+                DatabaseConnectionException::create(null, null, $exception)
             );
 
         } elseif ($exception instanceof RecordNotFound) {
             // Let's handle the exception gracefully
             parent::handleException(
-                new ObjectNotFound()
+                ObjectNotFound::create(null, null, $exception)
             );
 
         } elseif ($exception instanceof HTTPBasicUnauthorized) {
