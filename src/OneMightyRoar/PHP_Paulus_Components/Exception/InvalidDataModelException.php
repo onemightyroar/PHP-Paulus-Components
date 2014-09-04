@@ -37,18 +37,25 @@ class InvalidDataModelException extends UnexpectedValueException
      */
     const DEFAULT_ERROR_KEY = 'generic';
 
+    /**
+     * The default exception message
+     *
+     * @const string
+     */
+    const DEFAULT_MESSAGE = 'The data model is invalid';
+
 
     /**
      * Properties
      */
 
     /**
-     * Default exception message
+     * The exception message
      *
      * @var string
      * @access protected
      */
-    protected $message = 'The data model is invalid';
+    protected $message = self::DEFAULT_MESSAGE;
 
     /**
      * Errors array

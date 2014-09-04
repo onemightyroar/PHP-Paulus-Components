@@ -24,10 +24,26 @@ class HTTPBasicUnauthorized extends Unauthorized
 {
 
     /**
+     * Constants
+     */
+
+    /**
+     * The default exception message
+     *
+     * @const string
+     */
+    const DEFAULT_MESSAGE = '';
+
+
+    /**
+     * Properties
+     */
+
+    /**
      * The exception message
      *
      * @var string
      * @access protected
      */
-    protected $message = '';
+    protected $message = self::DEFAULT_MESSAGE;
 }

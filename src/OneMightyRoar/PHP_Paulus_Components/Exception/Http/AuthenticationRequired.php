@@ -22,10 +22,26 @@ class AuthenticationRequired extends Unauthorized
 {
 
     /**
+     * Constants
+     */
+
+    /**
+     * The default exception message
+     *
+     * @const string
+     */
+    const DEFAULT_MESSAGE = 'A required access token was not sent';
+
+
+    /**
+     * Properties
+     */
+
+    /**
      * The exception message
      *
      * @var string
      * @access protected
      */
-    protected $message = 'A required access token was not sent';
+    protected $message = self::DEFAULT_MESSAGE;
 }
