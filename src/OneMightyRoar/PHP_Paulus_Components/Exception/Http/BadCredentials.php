@@ -24,10 +24,26 @@ class BadCredentials extends Unauthorized
 {
 
     /**
+     * Constants
+     */
+
+    /**
+     * The default exception message
+     *
+     * @const string
+     */
+    const DEFAULT_MESSAGE = 'Please check your credentials and try again';
+
+
+    /**
+     * Properties
+     */
+
+    /**
      * The exception message
      *
      * @var string
      * @access protected
      */
-    protected $message = 'Please check your credentials and try again';
+    protected $message = self::DEFAULT_MESSAGE;
 }

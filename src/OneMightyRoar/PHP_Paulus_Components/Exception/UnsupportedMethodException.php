@@ -22,12 +22,27 @@ class UnsupportedMethodException extends LogicException
 {
 
     /**
-     * The exception and response code
-     *
-     * @var int
-     * @access protected
+     * Constants
      */
-    protected $code = 500;
+
+    /**
+     * The default exception message
+     *
+     * @const string
+     */
+    const DEFAULT_MESSAGE = 'Unsupported method call';
+
+    /**
+     * The default exception code
+     *
+     * @const int
+     */
+    const DEFAULT_CODE = 500;
+
+
+    /**
+     * Properties
+     */
 
     /**
      * The exception message
@@ -35,5 +50,13 @@ class UnsupportedMethodException extends LogicException
      * @var string
      * @access protected
      */
-    protected $message = 'Unsupported method call';
+    protected $message = self::DEFAULT_MESSAGE;
+
+    /**
+     * The exception and response code
+     *
+     * @var int
+     * @access protected
+     */
+    protected $code = self::DEFAULT_CODE;
 }

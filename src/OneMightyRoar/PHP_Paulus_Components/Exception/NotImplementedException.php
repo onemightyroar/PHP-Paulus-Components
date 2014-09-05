@@ -20,10 +20,26 @@ class NotImplementedException extends UnsupportedMethodException
 {
 
     /**
+     * Constants
+     */
+
+    /**
+     * The default exception message
+     *
+     * @const string
+     */
+    const DEFAULT_MESSAGE = 'Method or function is not (yet) implemented';
+
+
+    /**
+     * Properties
+     */
+
+    /**
      * The exception message
      *
      * @var string
      * @access protected
      */
-    protected $message = 'Method or function is not (yet) implemented';
+    protected $message = self::DEFAULT_MESSAGE;
 }

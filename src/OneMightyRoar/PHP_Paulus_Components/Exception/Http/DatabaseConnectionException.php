@@ -24,10 +24,26 @@ class DatabaseConnectionException extends BadGateway
 {
 
     /**
+     * Constants
+     */
+
+    /**
+     * The default exception message
+     *
+     * @const string
+     */
+    const DEFAULT_MESSAGE = 'There was an error connecting to or retrieving from the Database';
+
+
+    /**
+     * Properties
+     */
+
+    /**
      * The exception message
      *
      * @var string
      * @access protected
      */
-    protected $message = 'There was an error connecting to or retrieving from the Database';
+    protected $message = self::DEFAULT_MESSAGE;
 }
