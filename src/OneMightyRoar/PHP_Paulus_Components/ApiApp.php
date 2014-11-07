@@ -56,10 +56,13 @@ class ApiApp extends BasicApp
         parent::__construct($base_path, $app_namespace, $config, $router, $locator, $logger);
 
         // Set our default response
-        if (null === $this->default_response) {
-            $this->setDefaultResponse(
-                (new ApiResponse())->unlock()
-            );
-        }
+        $this->setDefaultResponse(
+            (new ApiResponse())->unlock()
+        );
+
+        // Set our exception handler's response object
+        $this->exception_handler->setResponse(
+            (new ApiResponse())->unlock()
+        );
     }
 }
