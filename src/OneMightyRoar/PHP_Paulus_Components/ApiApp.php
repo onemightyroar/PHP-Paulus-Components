@@ -59,5 +59,10 @@ class ApiApp extends BasicApp
         $this->setDefaultResponse(
             (new ApiResponse())->unlock()
         );
+
+        // Set our exception handler's response object
+        $this->exception_handler->setResponse(
+            (new ApiResponse())->unlock()
+        );
     }
 }
