@@ -141,7 +141,7 @@ class BasicApp extends Paulus
      *
      * @return AbstractEnvironment
      */
-    public function environment()
+    public function getEnvironment()
     {
         return $this->environment;
     }
