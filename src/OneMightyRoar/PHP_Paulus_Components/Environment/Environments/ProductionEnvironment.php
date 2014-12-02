@@ -10,7 +10,17 @@
 
 namespace OneMightyRoar\PHP_Paulus_Components\Environment\Environments;
 
+/**
+ * Class ProductionEnvironment
+ */
 class ProductionEnvironment extends AbstractEnvironment
 {
+    /**
+     * Constants
+     */
+
+    /**
+     * @type string The environment's name
+     */
     const ENVIRONMENT_NAME = 'production';
 }

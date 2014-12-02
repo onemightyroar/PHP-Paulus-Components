@@ -11,9 +11,9 @@
 namespace OneMightyRoar\PHP_Paulus_Components\Environment\Environments;
 
 /**
- * Class AbstractEnvironment
+ * Class DevelopmentEnvironment
  */
-abstract class AbstractEnvironment
+class DevelopmentEnvironment extends AbstractEnvironment
 {
     /**
      * Constants
@@ -22,20 +22,5 @@ abstract class AbstractEnvironment
     /**
      * @type string The environment's name
      */
-    const ENVIRONMENT_NAME = '';
-
-
-    /**
-     * Methods
-     */
-
-    /**
-     * Magic string conversion
-     *
-     * @return string
-     */
-    public static function __toString()
-    {
-        return static::ENVIRONMENT_NAME;
-    }
+    const ENVIRONMENT_NAME = 'development';
 }
