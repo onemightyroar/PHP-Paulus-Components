@@ -13,7 +13,7 @@ namespace OneMightyRoar\PHP_Paulus_Components\Environment;
 /**
  * Class DevelopmentEnvironment
  */
-class DevelopmentEnvironment extends AbstractEnvironment
+class DevelopmentEnvironment implements EnvironmentInterface
 {
     /**
      * Constants

@@ -13,7 +13,7 @@ namespace OneMightyRoar\PHP_Paulus_Components\Environment;
 /**
  * Class ProductionEnvironment
  */
-class ProductionEnvironment extends AbstractEnvironment
+class ProductionEnvironment implements EnvironmentInterface
 {
     /**
      * Constants

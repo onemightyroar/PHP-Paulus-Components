@@ -37,7 +37,7 @@ class EnvironmentFactory
      * Strictly build an environment based on the passed argument, the current environment, or a default one
      *
      * @param string $environment {optional} The specific environment to build
-     * @return AbstractEnvironment
+     * @return EnvironmentInterface
      */
     public static function createFromString($environment = null)
     {

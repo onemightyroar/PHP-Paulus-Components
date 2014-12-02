@@ -11,9 +11,9 @@
 namespace OneMightyRoar\PHP_Paulus_Components\Environment;
 
 /**
- * Class AbstractEnvironment
+ * Interface EnvironmentInterface
  */
-abstract class AbstractEnvironment
+Interface EnvironmentInterface
 {
     /**
      * Methods
@@ -24,5 +24,5 @@ abstract class AbstractEnvironment
      *
      * @return string
      */
-    abstract public function getName();
+    public function getName();
 }

@@ -13,7 +13,7 @@ namespace OneMightyRoar\PHP_Paulus_Components\Environment;
 /**
  * Class CustomEnvironment
  */
-class CustomEnvironment extends AbstractEnvironment
+class CustomEnvironment implements EnvironmentInterface
 {
     /**
      * Properties

@@ -13,7 +13,7 @@ namespace OneMightyRoar\PHP_Paulus_Components\Environment;
 /**
  * Class UnknownEnvironment
  */
-class UnknownEnvironment extends AbstractEnvironment
+class UnknownEnvironment implements EnvironmentInterface
 {
     /**
      * Constants

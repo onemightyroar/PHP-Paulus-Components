@@ -13,7 +13,7 @@ namespace OneMightyRoar\PHP_Paulus_Components\Environment;
 /**
  * Class StagingEnvironment
  */
-class StagingEnvironment extends AbstractEnvironment
+class StagingEnvironment implements EnvironmentInterface
 {
     /**
      * Constants
