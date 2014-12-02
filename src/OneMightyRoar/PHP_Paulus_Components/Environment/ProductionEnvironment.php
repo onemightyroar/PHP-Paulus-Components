@@ -8,7 +8,7 @@
  * @link        http://onemightyroar.com
  */
 
-namespace OneMightyRoar\PHP_Paulus_Components\Environment\Environments;
+namespace OneMightyRoar\PHP_Paulus_Components\Environment;
 
 /**
  * Class ProductionEnvironment
@@ -23,4 +23,19 @@ class ProductionEnvironment extends AbstractEnvironment
      * @type string The environment's name
      */
     const ENVIRONMENT_NAME = 'production';
+
+
+    /**
+     * Methods
+     */
+
+    /**
+     * Get the name of the environment
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return static::ENVIRONMENT_NAME;
+    }
 }

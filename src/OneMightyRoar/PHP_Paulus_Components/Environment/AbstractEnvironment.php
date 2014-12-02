@@ -8,7 +8,7 @@
  * @link        http://onemightyroar.com
  */
 
-namespace OneMightyRoar\PHP_Paulus_Components\Environment\Environments;
+namespace OneMightyRoar\PHP_Paulus_Components\Environment;
 
 /**
  * Class AbstractEnvironment
@@ -16,26 +16,13 @@ namespace OneMightyRoar\PHP_Paulus_Components\Environment\Environments;
 abstract class AbstractEnvironment
 {
     /**
-     * Constants
-     */
-
-    /**
-     * @type string The environment's name
-     */
-    const ENVIRONMENT_NAME = '';
-
-
-    /**
      * Methods
      */
 
     /**
-     * Magic string conversion
+     * Get the name of the environment
      *
      * @return string
      */
-    public function __toString()
-    {
-        return static::ENVIRONMENT_NAME;
-    }
+    abstract public function getName();
 }

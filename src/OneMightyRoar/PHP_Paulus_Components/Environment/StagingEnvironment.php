@@ -8,7 +8,7 @@
  * @link        http://onemightyroar.com
  */
 
-namespace OneMightyRoar\PHP_Paulus_Components\Environment\Environments;
+namespace OneMightyRoar\PHP_Paulus_Components\Environment;
 
 /**
  * Class StagingEnvironment
@@ -23,4 +23,19 @@ class StagingEnvironment extends AbstractEnvironment
      * @type string The environment's name
      */
     const ENVIRONMENT_NAME = 'staging';
+
+
+    /**
+     * Methods
+     */
+
+    /**
+     * Get the name of the environment
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return static::ENVIRONMENT_NAME;
+    }
 }

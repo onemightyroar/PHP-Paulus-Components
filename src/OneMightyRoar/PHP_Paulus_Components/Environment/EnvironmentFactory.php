@@ -10,11 +10,6 @@
 
 namespace OneMightyRoar\PHP_Paulus_Components\Environment;
 
-use OneMightyRoar\PHP_Paulus_Components\Environment\Environments\CustomEnvironment;
-use OneMightyRoar\PHP_Paulus_Components\Environment\Environments\DevelopmentEnvironment;
-use OneMightyRoar\PHP_Paulus_Components\Environment\Environments\ProductionEnvironment;
-use OneMightyRoar\PHP_Paulus_Components\Environment\Environments\StagingEnvironment;
-
 /**
  * Class EnvironmentFactory
  *
@@ -42,9 +37,9 @@ class EnvironmentFactory
      * Strictly build an environment based on the passed argument, the current environment, or a default one
      *
      * @param string $environment {optional} The specific environment to build
-     * @return CustomEnvironment|DevelopmentEnvironment|ProductionEnvironment|StagingEnvironment
+     * @return AbstractEnvironment
      */
-    public static function create($environment = null)
+    public static function createFromString($environment = null)
     {
         // First check if we passed in an environment string, if not try to get the current environment variable
         $environment_string = $environment ?: getenv('ENVIRONMENT');
