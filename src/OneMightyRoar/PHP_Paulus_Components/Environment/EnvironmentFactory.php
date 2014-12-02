@@ -57,7 +57,7 @@ class EnvironmentFactory
                 $environment = new ProductionEnvironment();
                 break;
             default:
-                $environment = new CustomEnvironment();
+                $environment = new UnknownEnvironment();
         }
 
         return $environment;
