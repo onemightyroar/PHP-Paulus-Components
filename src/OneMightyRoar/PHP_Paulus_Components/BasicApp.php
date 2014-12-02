@@ -11,6 +11,8 @@
 namespace OneMightyRoar\PHP_Paulus_Components;
 
 use OneMightyRoar\PHP_Paulus_Components\DataCollection\ImmutableDataCollection;
+use OneMightyRoar\PHP_Paulus_Components\Environment\EnvironmentFactory;
+use OneMightyRoar\PHP_Paulus_Components\Environment\Environments\AbstractEnvironment;
 use OneMightyRoar\PHP_Paulus_Components\FileLoader\FileArrayLoader;
 use Paulus\FileLoader\RouteLoader;
 use Paulus\FileLoader\RouteLoaderFactory;
@@ -65,6 +67,13 @@ class BasicApp extends Paulus
      */
     protected $app_namespace;
 
+    /**
+     * The application's current environment
+     *
+     * @type AbstractEnvironment
+     */
+    protected $environment;
+
 
     /**
      * Methods
@@ -90,7 +99,8 @@ class BasicApp extends Paulus
         array $config = null,
         Router $router = null,
         ServiceLocator $locator = null,
-        LoggerInterface $logger = null
+        LoggerInterface $logger = null,
+        AbstractEnvironment $environment = null
     ) {
         // Call our parent constructor
         parent::__construct($router, $locator, $logger);
@@ -110,6 +120,9 @@ class BasicApp extends Paulus
 
         // Enter our config into the locator AFTER its been initialized
         $this->locator[static::CONFIG_KEY] = new ImmutableDataCollection($config);
+
+        // Set the environment
+        $this->environment = $environment ?: EnvironmentFactory::create();
     }
 
     /**
@@ -121,6 +134,16 @@ class BasicApp extends Paulus
     public function config()
     {
         return $this->locator[static::CONFIG_KEY];
+    }
+
+    /**
+     * Get the application's current environment
+     *
+     * @return AbstractEnvironment
+     */
+    public function environment()
+    {
+        return $this->environment;
     }
 
     /**
