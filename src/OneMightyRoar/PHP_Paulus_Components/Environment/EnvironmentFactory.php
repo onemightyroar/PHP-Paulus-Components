@@ -51,14 +51,18 @@ class EnvironmentFactory
         // If there isn't an environment variable available, fall back to our default environment
         $environment_string = $environment_string ?: static::DEFAULT_ENVIRONMENT;
 
-        if (DevelopmentEnvironment::ENVIRONMENT_NAME === $environment_string) {
-            $environment = new DevelopmentEnvironment();
-        } elseif (StagingEnvironment::ENVIRONMENT_NAME === $environment_string) {
-            $environment = new StagingEnvironment();
-        } elseif (ProductionEnvironment::ENVIRONMENT_NAME === $environment_string) {
-            $environment = new ProductionEnvironment();
-        } else {
-            $environment = new CustomEnvironment();
+        switch (strtolower($environment_string)) {
+            case DevelopmentEnvironment::ENVIRONMENT_NAME:
+                $environment = new DevelopmentEnvironment();
+                break;
+            case StagingEnvironment::ENVIRONMENT_NAME:
+                $environment = new StagingEnvironment();
+                break;
+            case ProductionEnvironment::ENVIRONMENT_NAME:
+                $environment = new ProductionEnvironment();
+                break;
+            default:
+                $environment = new CustomEnvironment();
         }
 
         return $environment;
