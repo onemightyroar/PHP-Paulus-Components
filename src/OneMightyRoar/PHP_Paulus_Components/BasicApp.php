@@ -12,7 +12,7 @@ namespace OneMightyRoar\PHP_Paulus_Components;
 
 use OneMightyRoar\PHP_Paulus_Components\DataCollection\ImmutableDataCollection;
 use OneMightyRoar\PHP_Paulus_Components\Environment\EnvironmentFactory;
-use OneMightyRoar\PHP_Paulus_Components\Environment\Environments\AbstractEnvironment;
+use OneMightyRoar\PHP_Paulus_Components\Environment\EnvironmentInterface;
 use OneMightyRoar\PHP_Paulus_Components\FileLoader\FileArrayLoader;
 use Paulus\FileLoader\RouteLoader;
 use Paulus\FileLoader\RouteLoaderFactory;
@@ -91,6 +91,7 @@ class BasicApp extends Paulus
      * @param Router $router            The Router instance to use for HTTP routing
      * @param ServiceLocator $locator   The service locator/container for the app
      * @param LoggerInterface $logger   A PSR LoggerInterface compatible logger instance
+     * @param EnvironmentInterface $environment The context of the app's current environment
      * @access public
      */
     public function __construct(
@@ -100,7 +101,7 @@ class BasicApp extends Paulus
         Router $router = null,
         ServiceLocator $locator = null,
         LoggerInterface $logger = null,
-        AbstractEnvironment $environment = null
+        EnvironmentInterface $environment = null
     ) {
         // Call our parent constructor
         parent::__construct($router, $locator, $logger);

@@ -13,7 +13,7 @@ namespace OneMightyRoar\PHP_Paulus_Components\Environment;
 /**
  * Interface EnvironmentInterface
  */
-Interface EnvironmentInterface
+interface EnvironmentInterface
 {
     /**
      * Methods
