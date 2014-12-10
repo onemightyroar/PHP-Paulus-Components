@@ -11,9 +11,9 @@
 namespace OneMightyRoar\PHP_Paulus_Components\Environment;
 
 /**
- * Class CustomEnvironment
+ * Class BaseEnvironment
  */
-class CustomEnvironment implements EnvironmentInterface
+class BaseEnvironment implements EnvironmentInterface
 {
     /**
      * Properties
@@ -43,7 +43,7 @@ class CustomEnvironment implements EnvironmentInterface
      * Set the name of the environment
      *
      * @param $name
-     * @return CustomEnvironment
+     * @return BaseEnvironment
      */
     public function setName($name)
     {
