@@ -11,6 +11,8 @@
 namespace OneMightyRoar\PHP_Paulus_Components;
 
 use OneMightyRoar\PHP_Paulus_Components\DataCollection\ImmutableDataCollection;
+use OneMightyRoar\PHP_Paulus_Components\Environment\EnvironmentFactory;
+use OneMightyRoar\PHP_Paulus_Components\Environment\EnvironmentInterface;
 use OneMightyRoar\PHP_Paulus_Components\FileLoader\FileArrayLoader;
 use Paulus\FileLoader\RouteLoader;
 use Paulus\FileLoader\RouteLoaderFactory;
@@ -65,6 +67,13 @@ class BasicApp extends Paulus
      */
     protected $app_namespace;
 
+    /**
+     * The application's current environment
+     *
+     * @type AbstractEnvironment
+     */
+    protected $environment;
+
 
     /**
      * Methods
@@ -82,6 +91,7 @@ class BasicApp extends Paulus
      * @param Router $router            The Router instance to use for HTTP routing
      * @param ServiceLocator $locator   The service locator/container for the app
      * @param LoggerInterface $logger   A PSR LoggerInterface compatible logger instance
+     * @param EnvironmentInterface $environment The context of the app's current environment
      * @access public
      */
     public function __construct(
@@ -90,7 +100,8 @@ class BasicApp extends Paulus
         array $config = null,
         Router $router = null,
         ServiceLocator $locator = null,
-        LoggerInterface $logger = null
+        LoggerInterface $logger = null,
+        EnvironmentInterface $environment = null
     ) {
         // Call our parent constructor
         parent::__construct($router, $locator, $logger);
@@ -110,6 +121,9 @@ class BasicApp extends Paulus
 
         // Enter our config into the locator AFTER its been initialized
         $this->locator[static::CONFIG_KEY] = new ImmutableDataCollection($config);
+
+        // Set the environment
+        $this->environment = $environment ?: EnvironmentFactory::createFromString();
     }
 
     /**
@@ -121,6 +135,16 @@ class BasicApp extends Paulus
     public function config()
     {
         return $this->locator[static::CONFIG_KEY];
+    }
+
+    /**
+     * Get the application's current environment
+     *
+     * @return AbstractEnvironment
+     */
+    public function getEnvironment()
+    {
+        return $this->environment;
     }
 
     /**
