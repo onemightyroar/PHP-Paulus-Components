@@ -123,7 +123,7 @@ class BasicApp extends Paulus
         $this->locator[static::CONFIG_KEY] = new ImmutableDataCollection($config);
 
         // Set the environment
-        $this->environment = $environment ?: EnvironmentFactory::create();
+        $this->environment = $environment ?: EnvironmentFactory::createFromString();
     }
 
     /**
