@@ -158,11 +158,10 @@ class BasicApp extends Paulus
     public function prepare($auto_load_routes = true, RouteLoader $route_loader = null)
     {
         // Change our defaults
-        $auto_load_routes = (null === $auto_load_routes) ? true : $auto_load_routes;
         $route_loader = $route_loader
             ?: RouteLoaderFactory::buildByDirectoryInferring($this->router, $this->app_base_path);
 
         // Call our parent
-        return parent::prepare($auto_load_routes, $route_loader);
+        return parent::prepare((bool) $auto_load_routes, $route_loader);
     }
 }
