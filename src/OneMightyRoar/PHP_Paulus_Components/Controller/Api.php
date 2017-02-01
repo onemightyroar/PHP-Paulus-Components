@@ -163,12 +163,7 @@ class Api extends AbstractController
     }
 
     /**
-     * Handle the result of the route callback called
-     * through the current controller
-     *
-     * @param mixed $result_data
-     * @access public
-     * @return ControllerInterface
+     * {@inheritdoc}
      */
     public function handleResult($result_data)
     {
@@ -216,14 +211,9 @@ class Api extends AbstractController
     }
 
     /**
-     * Handle an exception thrown during the callback
-     * execution of the current controller
-     *
-     * @param Exception $exception  The actual exception object itself
-     * @access public
-     * @return ControllerInterface
+     * {@inheritdoc}
      */
-    public function handleException(Exception $exception)
+    public function handleException($exception)
     {
         // Let's do different things, based on the type of the error
         if ($exception instanceof ActiveRecordValidationException) {
